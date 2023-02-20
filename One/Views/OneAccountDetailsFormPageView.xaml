@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="One.Views.OneAccountDetailsFormPageView"
+             xmlns:CustomControls="clr-namespace:One.CustomControls"
+           
+             Title="Enter Account Details">
+    <VerticalStackLayout>
+        <StackLayout Padding="10">
+            <CustomControls:OutlinedEntryControl Placeholder="Account Name"/>
+            <CustomControls:OutlinedEntryControl Placeholder="Your Key "/>
+            <StackLayout  Orientation="Horizontal" >
+
+
+                <StackLayout>
+
+                    <Label Text="Type of Key" Margin="22,20"  TextColor="Blue" FontAttributes="Bold"/>
+
+                    <Picker x:Name="picker" Margin="10,-20"
+                         Title="Select Type Of Key">
+                        <Picker.ItemsSource>
+                            <x:Array Type="{x:Type x:String}">
+                                <x:String>Time based</x:String>
+                                <x:String>Counter based</x:String>
+
+
+                            </x:Array>
+                        </Picker.ItemsSource>
+                    </Picker>
+                    <!-- <Frame Margin="10,-22" HeightRequest="50" WidthRequest="200"  BorderColor="Blue">
+                       
+                        
+                    </Frame>
+                    <Label Text="{Binding Source={x:Reference picker}, Path=SelectedItem}" />-->
+                    <!---->
+
+                    <!--<CustomControls:OutlinedEntryControl Placeholder="Type Of Key"  WidthRequest="200" HorizontalOptions="Start" Text="Time based"/>-->
+
+
+
+
+
+
+                </StackLayout>
+
+                <StackLayout>
+                    <Button Text="Add" HorizontalOptions="Start" HeightRequest="50" WidthRequest="100" Margin="70,30"></Button>
+                </StackLayout>
+
+            </StackLayout>
+
+
+
+        </StackLayout>
+
+
+    </VerticalStackLayout>
+</ContentPage>

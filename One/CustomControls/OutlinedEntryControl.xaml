@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Grid xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="One.CustomControls.OutlinedEntryControl"
+           RowDefinitions="auto"
+      Margin="0,30,0,0"
+     xmlns:handlers="clr-namespace:One.Handlers"
+      x:Name="this"
+      >
+    
+    <Frame Grid.Row="0"   BorderColor="Gray" x:Name="lblBorderColor"  Padding="8,2,8,2" >
+        <handlers:BorderlessEntry x:Name="txtEntry"
+            Focused="txtEntry_Focused"  Unfocused="txtEntry_Unfocused"
+            Text="{Binding Source={x:Reference this},Path=Text}"  BackgroundColor="Transparent"
+            />
+        <!--<Entry  x:Name="txtEntry" Focused="txtEntry_Focused"  Unfocused="txtEntry_Unfocused"
+            Text="{Binding Source={x:Reference this},Path=Text}"  BackgroundColor="Transparent"  />-->
+
+
+    </Frame>
+
+    <Label Grid.Row="0" 
+           FontSize="15"
+           x:Name="lblPlaceholder"
+           Margin="10,0,10,0" 
+           Text="{Binding Source={x:Reference this},Path=Placeholder}"
+           TextColor="Gray" 
+           BackgroundColor="White" 
+           HorizontalOptions="StartAndExpand" 
+           VerticalOptions="CenterAndExpand"/>
+
+
+
+    
+
+
+</Grid>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="One.Views.OneHomePageView"
+             Shell.NavBarIsVisible="False"
+              xmlns:viewModels="clr-namespace:One.ViewModels"
+             xmlns:models="clr-namespace:One.Models"
+             x:DataType="viewModels:OneHomePageViewModel"
+            
+             Title="OneHomePageView">
+    <ScrollView>
+
+        <VerticalStackLayout BackgroundColor="Transparent" >
+
+            <StackLayout Padding="0" Margin="0,0,0,0" >
+                <StackLayout Orientation="Horizontal"  HeightRequest="50" >
+                    <Label Text="One  Authenticator" FontSize="25" FontAttributes="Bold" TextColor="#1e90ff"  CharacterSpacing="1" VerticalOptions="Center"/>
+
+                    <!--<Label Text="O" FontSize="30" FontAttributes="Bold" TextColor="#7fff00"/>
+                    <Label Text="" FontSize="20" FontAttributes="Bold" TextColor="#df00ff" Margin="0,10"/>
+                    <Label Text="e" FontSize="20" FontAttributes="Bold" TextColor="#ff033e" Margin="0,10"/>
+                    <Label Text="  Authenticator" FontSize="25" FontAttributes="Bold" TextColor="#df00ff" Margin="0,6" CharacterSpacing="1"/>-->
+
+                </StackLayout>
+
+                <StackLayout Margin="0,20,0,0" >
+
+                    <!--<Label Text="{Binding Title}" FontSize="20" FontAttributes="Bold" TextColor="#df00ff" Margin="0,10"/>-->
+                    <CollectionView ItemsSource="{Binding Oneemail}"  >
+
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate  x:DataType="models:OneEmailModel">
+
+
+
+                                <Grid Padding="0">
+
+
+                                    <Frame  BorderColor="silver" CornerRadius="0"  Margin="0,5" >
+
+                                        <StackLayout VerticalOptions="Center" HorizontalOptions="Start" Spacing="4" >
+                                           
+                                            <!--<Label VerticalOptions="Center" Text="{Binding Application_Name,StringFormat='ApplicationName          :         {0:F0}'}"  FontAttributes="Bold"></Label>-->
+                                            <Label VerticalOptions="Center" HorizontalOptions="Start" Text="{Binding VarCode}"  TextColor="#1e90ff" FontAttributes="Bold" FontSize="30"  CharacterSpacing="5"></Label>
+                                            <StackLayout Orientation="Horizontal">
+                                                <Label VerticalOptions="Center" HorizontalOptions="Start" Text="{Binding Application_Name,StringFormat='( {0:F2}'}"    FontAttributes="Bold" FontSize="15"></Label>
+                                                <Label VerticalOptions="Center" HorizontalOptions="Center" Text="{Binding Email,StringFormat=') {0:F2}'}"   FontAttributes="Bold" FontSize="14"></Label>
+                                                <ProgressBar Progress="0.3" ProgressColor="Green"  WidthRequest="100" HorizontalOptions="End" Margin="50,0" />
+                                            </StackLayout>
+
+
+
+                                        </StackLayout>
+
+
+                                    </Frame>
+
+
+                                </Grid>
+
+
+
+
+
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+
+                    </CollectionView>
+
+                </StackLayout>
+
+
+
+
+
+
+
+            </StackLayout>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

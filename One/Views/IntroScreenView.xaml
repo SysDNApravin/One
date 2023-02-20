@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="One.Views.IntroScreenView"
+             Shell.NavBarIsVisible="False"
+             xmlns:viewModels="clr-namespace:One.ViewModels"
+             xmlns:models="clr-namespace:One.Models"
+             x:DataType="viewModels:IntroScreenViewModel"
+             Title="IntroScreenView">
+    <StackLayout Margin="10">
+        <CarouselView IndicatorView="inidicatorView1" ItemsSource="{Binding IntroScreens}" HeightRequest="500" >
+            <CarouselView.ItemTemplate>
+                <DataTemplate x:DataType="models:IntroScreenModel">
+                    <Grid RowDefinitions="60*,40*" >
+                        <Image Source="{Binding IntroImage}" Aspect="AspectFit" Grid.Row="0"/>
+                        <StackLayout Spacing="10" Grid.Row="1">
+                            <Label Text="{Binding IntroTitle}" FontSize="35" FontAttributes="Bold" VerticalOptions="Center"/>
+                            <Label Text="{Binding IntroDescription}" FontSize="16" FontAttributes="Bold" TextColor="Gray"/>
+                        </StackLayout>
+                    </Grid>
+                </DataTemplate>
+            </CarouselView.ItemTemplate>
+
+        </CarouselView>
+        <StackLayout>
+
+            <Button  BorderColor="Gray" BorderWidth="1"  BackgroundColor="White" Text="Get Started" TextColor="Green" FontAttributes="Bold" HorizontalOptions="Center"
+                         Command="{Binding GetStartedCommand}"/>
+
+
+        </StackLayout>
+        <StackLayout>
+            <IndicatorView x:Name="inidicatorView1" HorizontalOptions="Center"  Margin="10"
+                           IndicatorSize="10" IndicatorColor="LimeGreen" SelectedIndicatorColor="Red"/>
+        </StackLayout>
+    </StackLayout>
+</ContentPage>

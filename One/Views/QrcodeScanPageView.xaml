@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="One.Views.QrcodeScanPageView"
+             xmlns:zxing="clr-namespace:ZXing.Net.Maui.Controls;assembly=ZXing.Net.MAUI.Controls"
+             Shell.NavBarIsVisible="False"
+             Title="QrcodeScanPageView">
+    <VerticalStackLayout HorizontalOptions="CenterAndExpand" >
+        <Label Text="Place QR Code Within Box"  TextColor="Blue" FontSize="15" HorizontalTextAlignment="Center" Margin="0,20"/>
+        <ScrollView>
+
+
+            <StackLayout
+            Spacing="25"
+            Padding="30,0"
+            VerticalOptions="Center">
+                <zxing:CameraBarcodeReaderView x:Name="barcodeReader" 
+                                           WidthRequest="300" HeightRequest="300"  
+                IsDetecting="True" IsTorchOn="false" BarcodesDetected="CameraBarcodeReaderView_BarcodesDetected" 
+                                 BackgroundColor="Transparent"   Opacity="20"   />
+
+
+
+
+                <Entry   Text="{Binding OneEmailDetail.Email}" x:Name="barcodeResult" Placeholder="Place QR Code Within Box" Margin="0,40" IsReadOnly="True" IsVisible="False" />
+
+                <Button  Text="Click Here To Scan"   Clicked="Button_Clicked_Check" Command="{Binding AddAccountOneCommand}" Margin="30" BackgroundColor="#1e90ff"/>
+
+                <!--<Label
+               x:Name="barcodeResult"
+               
+                FontSize="32"
+                HorizontalOptions="Center" />-->
+
+
+
+
+            </StackLayout>
+        </ScrollView>
+    </VerticalStackLayout>
+</ContentPage>
