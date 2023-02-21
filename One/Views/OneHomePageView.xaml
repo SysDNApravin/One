@@ -20,32 +20,37 @@
                     <Label Text="" FontSize="20" FontAttributes="Bold" TextColor="#df00ff" Margin="0,10"/>
                     <Label Text="e" FontSize="20" FontAttributes="Bold" TextColor="#ff033e" Margin="0,10"/>
                     <Label Text="  Authenticator" FontSize="25" FontAttributes="Bold" TextColor="#df00ff" Margin="0,6" CharacterSpacing="1"/>-->
+                    
 
                 </StackLayout>
-
+                <!--<ProgressBar Progress="0.5" ProgressColor="{Binding Title}"  WidthRequest="150" HorizontalOptions="Center"  />-->
                 <StackLayout Margin="0,20,0,0" >
 
                     <!--<Label Text="{Binding Title}" FontSize="20" FontAttributes="Bold" TextColor="#df00ff" Margin="0,10"/>-->
-                    <CollectionView ItemsSource="{Binding Oneemail}"  >
+                    <CollectionView ItemsSource="{Binding Oneemail}" HeightRequest="150" >
 
                         <CollectionView.ItemTemplate>
                             <DataTemplate  x:DataType="models:OneEmailModel">
 
 
 
-                                <Grid Padding="0">
+                                <Grid Padding="0" >
 
 
-                                    <Frame  BorderColor="silver" CornerRadius="0"  Margin="0,5" >
+                                    <Frame  BorderColor="silver" CornerRadius="0"  Margin="0,5"  >
 
                                         <StackLayout VerticalOptions="Center" HorizontalOptions="Start" Spacing="4" >
-                                           
-                                            <!--<Label VerticalOptions="Center" Text="{Binding Application_Name,StringFormat='ApplicationName          :         {0:F0}'}"  FontAttributes="Bold"></Label>-->
-                                            <Label VerticalOptions="Center" HorizontalOptions="Start" Text="{Binding VarCode}"  TextColor="#1e90ff" FontAttributes="Bold" FontSize="30"  CharacterSpacing="5"></Label>
                                             <StackLayout Orientation="Horizontal">
-                                                <Label VerticalOptions="Center" HorizontalOptions="Start" Text="{Binding Application_Name,StringFormat='( {0:F2}'}"    FontAttributes="Bold" FontSize="15"></Label>
-                                                <Label VerticalOptions="Center" HorizontalOptions="Center" Text="{Binding Email,StringFormat=') {0:F2}'}"   FontAttributes="Bold" FontSize="14"></Label>
-                                                <ProgressBar Progress="0.3" ProgressColor="Green"  WidthRequest="100" HorizontalOptions="End" Margin="50,0" />
+                                                <Label VerticalOptions="Center" HorizontalOptions="Start" Text="{Binding VarCode}"  TextColor="#1e90ff" FontAttributes="Bold" FontSize="30"  CharacterSpacing="5"></Label>
+                                                <ProgressBar Progress="0.3" ProgressColor="Green"  WidthRequest="100" HorizontalOptions="End" Margin="60,0" />
+
+                                            </StackLayout>
+                                           
+                                            
+                                            <StackLayout Orientation="Horizontal">
+                                                <!--<Label VerticalOptions="Center" HorizontalOptions="Start" Text="{Binding Application_Name,StringFormat='( {0:F2}'}"    FontAttributes="Bold" FontSize="15"></Label>-->
+                                                <Label VerticalOptions="Center" HorizontalOptions="Center" Text="{Binding Email,StringFormat='{0:F2}'}"   FontAttributes="Bold" FontSize="15"></Label>
+                                                
                                             </StackLayout>
 
 
@@ -66,7 +71,7 @@
                         </CollectionView.ItemTemplate>
 
                     </CollectionView>
-
+                    <Button Text="change" Command="{Binding AuthenticationCodeChangeCommand}"/>
                 </StackLayout>
 
 

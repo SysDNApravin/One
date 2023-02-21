@@ -14,8 +14,8 @@
                     <Grid RowDefinitions="60*,40*" >
                         <Image Source="{Binding IntroImage}" Aspect="AspectFit" Grid.Row="0"/>
                         <StackLayout Spacing="10" Grid.Row="1">
-                            <Label Text="{Binding IntroTitle}" FontSize="35" FontAttributes="Bold" VerticalOptions="Center"/>
-                            <Label Text="{Binding IntroDescription}" FontSize="16" FontAttributes="Bold" TextColor="Gray"/>
+                            <Label Text="{Binding IntroTitle}" FontSize="35" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
+                            <Label Text="{Binding IntroDescription}" FontSize="16" FontAttributes="Bold" TextColor="Gray" HorizontalTextAlignment="Center"/>
                         </StackLayout>
                     </Grid>
                 </DataTemplate>

@@ -22,7 +22,7 @@
 
 
 
-                <Entry   Text="{Binding OneEmailDetail.Email}" x:Name="barcodeResult" Placeholder="Place QR Code Within Box" Margin="0,40" IsReadOnly="True" IsVisible="False" />
+                <Entry   Text="{Binding OneEmailDetail.Email}" x:Name="barcodeResult" Placeholder="Place QR Code Within Box" Margin="0,40" IsReadOnly="True" IsVisible="false" />
 
                 <Button  Text="Click Here To Scan"   Clicked="Button_Clicked_Check" Command="{Binding AddAccountOneCommand}" Margin="30" BackgroundColor="#1e90ff"/>
 

@@ -1,4 +1,3 @@
-using Android.Graphics;
 using One.ViewModels;
 using ZXing.Net.Maui;
 
@@ -20,9 +19,28 @@ public partial class QrcodeScanPageView : ContentPage
         Dispatcher.Dispatch(() =>
         {
              var qrCode = $"{e.Results[0].Value} {e.Results[0].Format}";
-              
-          
-                barcodeResult.Text = qrCode;
+            
+            bool containsSearchResult = qrCode.Contains("?secret=");
+            bool containsName = qrCode.Contains("Google");
+            if(containsSearchResult==true ||containsName==true) {
+                string MyString = qrCode;
+                var TrmQrCode1 = (MyString.Remove(0, 15));
+                var TrmQrCode2 = "(" + TrmQrCode1;
+                String phraseQr1 = TrmQrCode2;
+                String phraseQr2 = phraseQr1.Replace("%3A", ") ");
+                String phraseQr3 = phraseQr2.Replace("%40", "@");
+                int TrmQrcode3 = phraseQr3.IndexOf("?secret=");
+                string phraseQr4 = phraseQr3.Remove(TrmQrcode3, 61);
+
+
+                barcodeResult.Text = phraseQr4;
+
+            }
+            else
+            {
+                DisplayAlert("Alert!", "Scaned QR Code is Not Valid", "Ok");
+            }
+
 
             // Navigation.PushModalAsync(new DetailsPage(barcodeResult));
 
