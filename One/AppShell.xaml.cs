@@ -13,6 +13,6 @@ public partial class AppShell : Shell
 		Routing.RegisterRoute(nameof(QrcodeScanPageView), typeof(QrcodeScanPageView));
 		Routing.RegisterRoute(nameof(OneAccountDetailsFormPageView), typeof(OneAccountDetailsFormPageView));
 
-
+		Routing.RegisterRoute(nameof(OneUpdateEmailPageView),typeof(OneUpdateEmailPageView));
 	}
 }

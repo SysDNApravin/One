@@ -13,7 +13,7 @@
         <VerticalStackLayout BackgroundColor="Transparent" >
 
             <StackLayout Padding="0" Margin="0,0,0,0" >
-                <StackLayout Orientation="Horizontal"  HeightRequest="50" >
+                <StackLayout Orientation="Horizontal">
                     <Label Text="One  Authenticator" FontSize="25" FontAttributes="Bold" TextColor="#1e90ff"  CharacterSpacing="1" VerticalOptions="Center"/>
 
                     <!--<Label Text="O" FontSize="30" FontAttributes="Bold" TextColor="#7fff00"/>
@@ -27,7 +27,7 @@
                 <StackLayout Margin="0,20,0,0" >
 
                     <!--<Label Text="{Binding Title}" FontSize="20" FontAttributes="Bold" TextColor="#df00ff" Margin="0,10"/>-->
-                    <CollectionView ItemsSource="{Binding Oneemail}" HeightRequest="150" >
+                    <CollectionView ItemsSource="{Binding Oneemail}">
 
                         <CollectionView.ItemTemplate>
                             <DataTemplate  x:DataType="models:OneEmailModel">
@@ -42,8 +42,8 @@
                                         <StackLayout VerticalOptions="Center" HorizontalOptions="Start" Spacing="4" >
                                             <StackLayout Orientation="Horizontal">
                                                 <Label VerticalOptions="Center" HorizontalOptions="Start" Text="{Binding VarCode}"  TextColor="#1e90ff" FontAttributes="Bold" FontSize="30"  CharacterSpacing="5"></Label>
-                                                <ProgressBar Progress="0.3" ProgressColor="Green"  WidthRequest="100" HorizontalOptions="End" Margin="60,0" />
-
+                                                <ProgressBar Progress="{Binding ProgressBarVal}" ProgressColor="Green"  WidthRequest="100" HorizontalOptions="End" Margin="60,0" />
+                                              
                                             </StackLayout>
                                            
                                             
@@ -56,6 +56,10 @@
 
 
                                         </StackLayout>
+                                        <Frame.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding Source={x:RelativeSource AncestorType={x:Type viewModels:OneHomePageViewModel}},Path=DisplayActionCommand}"
+                                                  CommandParameter="{Binding .}" />
+                                        </Frame.GestureRecognizers>
 
 
                                     </Frame>
@@ -71,7 +75,7 @@
                         </CollectionView.ItemTemplate>
 
                     </CollectionView>
-                    <Button Text="change" Command="{Binding AuthenticationCodeChangeCommand}"/>
+                    <!--<Button Text="change" Command="{Binding AuthenticationCodeChangeCommand}"/>-->
                 </StackLayout>
 
 

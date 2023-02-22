@@ -36,26 +36,6 @@ namespace One.ViewModels
             int response = -1;
 
 
-            /*
-              int n = 0;
-        for (int i = 1; i >= n ; i++)
-        {
-            var delay = Task.Delay(TimeSpan.FromSeconds(60));
-
-            var seconds = 0;
-            while (!delay.IsCompleted)
-            {
-                // While we're waiting, note the time ticking past
-                seconds++;
-                Thread.Sleep(TimeSpan.FromSeconds(1));
-                
-                if (seconds == 60)
-                {
-                   _oneEmailServices.UpdatOneEmail(OneEmailDetail);
-                 //console.Writeline("Hi Praveen");
-                }
-            }
-             */
 
             if (OneEmailDetail.Id > 0)
             {
@@ -64,7 +44,7 @@ namespace One.ViewModels
 
 
             }
-            //Check Proper Qr Code is Or not
+            
             else if (string.IsNullOrWhiteSpace(OneEmailDetail.Email))
             {
                 await Shell.Current.DisplayAlert("Alert !", "Please Scan Proper QRCode", "Ok");

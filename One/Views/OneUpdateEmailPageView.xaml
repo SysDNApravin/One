@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="One.Views.OneUpdateEmailPageView"
+             Shell.NavBarIsVisible="False"
+             Title="OneUpdateEmailPageView">
+    
+    <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
+        <Label Text="Change Name" HorizontalOptions="Center" TextColor="HotPink" TextDecorations="Underline"/>
+        <Entry
+            Text="{Binding OneEmailDetail.Email}"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+        <StackLayout Orientation="Horizontal"  HorizontalOptions="End" Spacing="20">
+            <Label Text="Cancel" TextColor="HotPink"/>
+            <Label Text="Save" TextColor="HotPink"/>
+           
+        </StackLayout>
+       
+    </VerticalStackLayout>
+</ContentPage>

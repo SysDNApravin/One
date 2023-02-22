@@ -5,6 +5,7 @@
              xmlns:zxing="clr-namespace:ZXing.Net.Maui.Controls;assembly=ZXing.Net.MAUI.Controls"
              Shell.NavBarIsVisible="False"
              Title="QrcodeScanPageView">
+   
     <VerticalStackLayout HorizontalOptions="CenterAndExpand" >
         <Label Text="Place QR Code Within Box"  TextColor="Blue" FontSize="15" HorizontalTextAlignment="Center" Margin="0,20"/>
         <ScrollView>
@@ -14,13 +15,14 @@
             Spacing="25"
             Padding="30,0"
             VerticalOptions="Center">
+
+
+
+
                 <zxing:CameraBarcodeReaderView x:Name="barcodeReader" 
                                            WidthRequest="300" HeightRequest="300"  
                 IsDetecting="True" IsTorchOn="false" BarcodesDetected="CameraBarcodeReaderView_BarcodesDetected" 
-                                 BackgroundColor="Transparent"   Opacity="20"   />
-
-
-
+                                 BackgroundColor="Transparent"   Opacity="20" />
 
                 <Entry   Text="{Binding OneEmailDetail.Email}" x:Name="barcodeResult" Placeholder="Place QR Code Within Box" Margin="0,40" IsReadOnly="True" IsVisible="false" />
 

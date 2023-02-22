@@ -14,6 +14,9 @@ using System.Diagnostics;
 using System.Net;
 
 using System.Runtime.CompilerServices;
+using One.Views;
+using SQLitePCL;
+
 
 namespace One.ViewModels
 {
@@ -30,6 +33,11 @@ namespace One.ViewModels
         }
         [ObservableProperty]
         private string _title = "Red";
+        [ObservableProperty]
+        private int _ran;
+
+        [ObservableProperty]
+        private double _progressbarval = 0.4;
         /*
 
         Stopwatch stopwatch = new Stopwatch();
@@ -107,18 +115,26 @@ namespace One.ViewModels
             var oneEmailList = await _oneEmailServices.GetOneEmailList();
             if (oneEmailList?.Count > 0)
             {
+                //Tips 
+                //1)creat new random number every 60 sec
+                //2)if new rndom number generated execute foreach loop
+                //while(true)
+                //{
+                //    Random rand = new Random();
+                //    int Ran = rand.Next(10, 20);
+                //}
+
                 foreach (var onemail in oneEmailList)
                 {
-                 Random rand = new Random();
-                 int ran = rand.Next(10, 20);
+                
                     Oneemail.Add(new OneEmailModel
                     {
 
                         Id = onemail.Id,
                         Email = onemail.Email,
 
-                        VarCode = ran + onemail.Id
-                     
+                        VarCode =  onemail.VarCode,
+                        ProgressBarVal = Progressbarval
                     }) ;
                 
                 
@@ -132,96 +148,170 @@ namespace One.ViewModels
         }
 
 
-       
 
 
 
 
-        [ICommand]
-        public async void AuthenticationCodeChange()
-           {
+        /*
+                [ICommand]
+                public async void AuthenticationCodeChange()
+                   {
 
-            
-            while (true)
-            {
-               
-                var oneEmailList = await _oneEmailServices.GetOneEmailList();
-                if (oneEmailList?.Count > 0)
-                {
-
-                    GetOneEmailList();
-                    var delay = Task.Delay(TimeSpan.FromSeconds(5));
-                   
-                    var seconds = 0;
-                    while (!delay.IsCompleted)
-                    {
-                        
-                        seconds++;
-                        Thread.Sleep(TimeSpan.FromSeconds(1));
-                        GetOneEmailList();
-                        if (seconds == 5)
-                        {
-                            GetOneEmailList();
-
-                        }
-
-                       
-                        
-
-                    }
-
-
-                    GetOneEmailList();
-
-
-
-                }
-                
-            }
-          
-           
-        }
-
-            /*
-            [ICommand]
-            public async void AuthenticationCodeChange()
-            {
-
-
-                //OneEmailDetail.VarCode = 123;
-
-                //var navParam = new Dictionary<string, object>();
-                //navParam.Add("OneEmailDetail", oneEmailModel);
-
-                //await AppShell.Current.GoToAsync(nameof(AddUpdateLogsView), navParam);
-                //int oneUpdate = await _oneEmailServices.UpdatOneEmail(OneEmailDetail);
-                var oneEmailList = await _oneEmailServices.GetOneEmailList();
-                if (oneEmailList?.Count > 0)
-                {
 
                     while (true)
                     {
 
-
-
-                        Random rand = new Random();
-                        int ran = rand.Next(10, 20);
-                        Thread.Sleep(20000);
-                        OneEmailDetail.Id = 1;
-                        OneEmailDetail.VarCode = ran;
-
-                        int oneUpdate = await _oneEmailServices.UpdatOneEmail(OneEmailDetail);
-                        if (oneUpdate > 0)
+                        var oneEmailList = await _oneEmailServices.GetOneEmailList();
+                        if (oneEmailList?.Count > 0)
                         {
+
                             GetOneEmailList();
+                            var delay = Task.Delay(TimeSpan.FromSeconds(5));
+
+                            var seconds = 0;
+                            while (!delay.IsCompleted)
+                            {
+
+                                seconds++;
+                                Thread.Sleep(TimeSpan.FromSeconds(1));
+                                GetOneEmailList();
+                                if (seconds == 5)
+                                {
+                                    GetOneEmailList();
+
+                                }
+
+
+
+
+                            }
+
+
+                            GetOneEmailList();
+
+
+
                         }
 
                     }
 
+
+                }
+
+
+                */     /*
+                    [ICommand]
+                    public async void AuthenticationCodeChange()
+                    {
+
+
+                        //OneEmailDetail.VarCode = 123;
+
+                        //var navParam = new Dictionary<string, object>();
+                        //navParam.Add("OneEmailDetail", oneEmailModel);
+
+                        //await AppShell.Current.GoToAsync(nameof(AddUpdateLogsView), navParam);
+                        //int oneUpdate = await _oneEmailServices.UpdatOneEmail(OneEmailDetail);
+                        var oneEmailList = await _oneEmailServices.GetOneEmailList();
+                        if (oneEmailList?.Count > 0)
+                        {
+
+                            while (true)
+                            {
+
+
+
+                                Random rand = new Random();
+                                int ran = rand.Next(10, 20);
+                                Thread.Sleep(20000);
+                                OneEmailDetail.Id = 1;
+                                OneEmailDetail.VarCode = ran;
+
+                                int oneUpdate = await _oneEmailServices.UpdatOneEmail(OneEmailDetail);
+                                if (oneUpdate > 0)
+                                {
+                                    GetOneEmailList();
+                                }
+
+                            }
+
+                        }
+
+                    }
+                    */
+
+       
+
+
+        [ICommand]
+        public async void DisplayAction(OneEmailModel oneEmailModel)
+        {
+            var response = await AppShell.Current.DisplayActionSheet("Select Option", "Cancel", null, "Edit", "Delete","Test");
+            if (response == "Edit")
+            {
+                //var navParam = new Dictionary<string, object>();
+               // navParam.Add("OneEmailDetail", oneEmailModel);
+                // AppShell.Current.GoToAsync(nameof(OneUpdateEmailPageView), navParam);
+
+                // string result = await AppShell.Current.DisplayPromptAsync("Edit Email", "Update Email");
+                int Email_id = oneEmailModel.Id;
+                string updateemailresult = await AppShell.Current.DisplayPromptAsync("", "Change Name", initialValue: $"{oneEmailModel.Email}", keyboard: Keyboard.Email);
+                if(Email_id > 0 && !string.IsNullOrWhiteSpace(updateemailresult))
+                {
+                    oneEmailModel.Email = updateemailresult;
+
+                    var updateResponse = await _oneEmailServices.UpdatOneEmail(oneEmailModel);
+                    if(updateResponse > 0)
+                    {
+                        GetOneEmailList();
+                    }
                 }
 
             }
-            */
+            else if (response == "Delete")
+            {
+                var delResponse = await _oneEmailServices.DeleteOneEmail(oneEmailModel);
+                if (delResponse > 0)
+                {
+                    GetOneEmailList();
+                }
+            }
+            else if(response=="Test") {
+                int a = 1;
+                if (a == 1)
+                {
+                    GetOneEmailList();
+                }
+               
+               Thread.Sleep(10000);
+                while (true)
+                {
+
+
+
+
+
+                    Random rand = new Random();
+                    var ran = rand.Next(100000, 999999);
+
+
+
+                    oneEmailModel.VarCode = ran;
+                    
+                    var updateResponseok = await _oneEmailServices.UpdatOneEmail(oneEmailModel);
+                    if (updateResponseok > 0)
+                    {
+                        GetOneEmailList();
+                    }
+                    //Thread.Sleep(25000);
+                }
+              
+            }
+
+
 
         }
+
+
+    }
 }

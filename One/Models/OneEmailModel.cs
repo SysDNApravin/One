@@ -18,5 +18,6 @@ namespace One.Models
         public string Application_Name { get; set; }
         public int VarCode { get; set; }
         
+        public double ProgressBarVal { get; set;}
     }
 }

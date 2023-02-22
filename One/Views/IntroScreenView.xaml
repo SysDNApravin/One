@@ -7,14 +7,17 @@
              xmlns:models="clr-namespace:One.Models"
              x:DataType="viewModels:IntroScreenViewModel"
              Title="IntroScreenView">
-    <StackLayout Margin="10">
-        <CarouselView IndicatorView="inidicatorView1" ItemsSource="{Binding IntroScreens}" HeightRequest="500" >
+    <ScrollView>
+       
+            <StackLayout Margin="10">
+         
+            <CarouselView IndicatorView="inidicatorView1" ItemsSource="{Binding IntroScreens}" HeightRequest="600" >
             <CarouselView.ItemTemplate>
                 <DataTemplate x:DataType="models:IntroScreenModel">
                     <Grid RowDefinitions="60*,40*" >
                         <Image Source="{Binding IntroImage}" Aspect="AspectFit" Grid.Row="0"/>
                         <StackLayout Spacing="10" Grid.Row="1">
-                            <Label Text="{Binding IntroTitle}" FontSize="35" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
+                            <Label Text="{Binding IntroTitle}" FontSize="35" FontAttributes="Bold" HorizontalTextAlignment="Center" />
                             <Label Text="{Binding IntroDescription}" FontSize="16" FontAttributes="Bold" TextColor="Gray" HorizontalTextAlignment="Center"/>
                         </StackLayout>
                     </Grid>
@@ -34,4 +37,6 @@
                            IndicatorSize="10" IndicatorColor="LimeGreen" SelectedIndicatorColor="Red"/>
         </StackLayout>
     </StackLayout>
+        
+    </ScrollView>
 </ContentPage>

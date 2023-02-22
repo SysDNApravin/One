@@ -44,7 +44,7 @@ public static class MauiProgram
 		builder.Services.AddSingleton<OneCreateAccountPageView>();
 		builder.Services.AddTransient<QrcodeScanPageView>();
 		builder.Services.AddSingleton<OneAccountDetailsFormPageView>();
-
+		builder.Services.AddSingleton<OneUpdateEmailPageView>();
 
         //ViewModels
         builder.Services.AddSingleton<IntroScreenViewModel>();
@@ -52,6 +52,7 @@ public static class MauiProgram
 		builder.Services.AddSingleton<OneCreateAccountPageViewModel>();
 		builder.Services.AddTransient<QrcodeScanPageViewModel>();
 		builder.Services.AddSingleton<OneAccountDetailsFormPageViewModel>();
+		builder.Services.AddSingleton<OneUpdateEmailPageViewModel>();
        
 
 
